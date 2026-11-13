@@ -1,5 +1,5 @@
 // EECS 348 Lab 11: Debugging and Testing
-// Answers to Q1-Q5 are in ANSWERS.md
+// Answers to Q1-Q5 are in answers.pdf
 
 #include <iostream>  // console output
 #include <string>    // string type
@@ -56,7 +56,11 @@ void run_test(const string& name, const vector<int>& record) {  // run one test
 
 int main() {  // program entry
     cout << "Q2: impossible, the faulty statement (int i = 1) runs on every call.\n";  // Q2 answer
-    cout << "Q3: impossible, executing int i = 1 immediately gives the wrong state (i = 1 instead of 0).\n\n";  // Q3 answer
+    cout << "Q3: depends on what counts as the internal state (see answers.pdf).\n";  // Q3 answer
+    cout << "    If the loop variable counts: impossible (i = 1 instead of 0).\n";  // strict reading
+    cout << "    If absent_count is the state: possible whenever lecture 1 is present, shown below.\n\n";  // count reading
+
+    run_test("Q3: executes fault, no error state in absent_count", {1, 1, 1, 1, 1, 1, 1, 1, 1, 1});  // Q3 test
 
     run_test("Q4: error state, no failure", {0, 0, 0, 0, 1, 1, 1, 1, 1, 1});  // Q4 test
     run_test("Q5: failure", {0, 0, 0, 1, 1, 1, 1, 1, 1, 1});  // Q5 test
